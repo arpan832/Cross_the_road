@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dis5xy8l78cdk"]
+
+[ext_resource type="PackedScene" uid="uid://dfq2iqhuccltx" path="res://Scenes/game.tscn" id="1_7xsxa"]
+[ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://Scenes/objects.tscn" id="2_5obrr"]
+[ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://Scenes/Player.tscn" id="2_ehbmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63h0o"]
+size = Vector2(1906.5, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tre3w"]
+size = Vector2(204, 2294)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtso"]
+size = Vector2(293.5, 2213)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e73nu"]
+size = Vector2(2141.5, 206.75)
+
+[node name="Game" unique_id=827385281 instance=ExtResource("1_7xsxa")]
+metadata/_edit_vertical_guides_ = [-288.0, -279.0, -287.0, 1610.0]
+metadata/_edit_horizontal_guides_ = [-669.0, 1563.0]
+
+[node name="Sprite2D" parent="." index="0" unique_id=1805247788]
+position = Vector2(668, 437.75)
+scale = Vector2(4.979167, 3.5132816)
+
+[node name="Objects" parent="." index="1" unique_id=1453897895 instance=ExtResource("2_5obrr")]
+position = Vector2(-1063.0001, -297)
+scale = Vector2(3.983515, 3.0685773)
+
+[node name="Player" parent="." index="2" unique_id=1851519035 instance=ExtResource("2_ehbmp")]
+position = Vector2(617, 917.00006)
+scale = Vector2(3.9609377, 3.2359376)
+
+[node name="Borders" type="StaticBody2D" parent="." index="3" unique_id=1345581844]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" index="0" unique_id=655025843]
+position = Vector2(670, -667)
+shape = SubResource("RectangleShape2D_63h0o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" index="1" unique_id=848579139]
+position = Vector2(-364, 445)
+shape = SubResource("RectangleShape2D_tre3w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders" index="2" unique_id=1521011690]
+position = Vector2(1753, 465.5)
+shape = SubResource("RectangleShape2D_jxtso")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" index="3" unique_id=1633918711]
+position = Vector2(707.25, 1633.625)
+shape = SubResource("RectangleShape2D_e73nu")
