@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://Scenes/objects.tscn" id="2_5obrr"]
 [ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://Scenes/Player.tscn" id="2_ehbmp"]
 [ext_resource type="Script" uid="uid://blh2upk7qkk6x" path="res://Scenes/area_2d.gd" id="5_rr6bl"]
+[ext_resource type="Script" uid="uid://dr26slm72is56" path="res://Scenes/car_timer.gd" id="6_n8kd5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63h0o"]
 size = Vector2(1906.5, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tre3w"]
-size = Vector2(204, 2294)
+size = Vector2(204, 2383)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxtso"]
 size = Vector2(293.5, 2213)
@@ -23,29 +24,24 @@ size = Vector2(1901.5, 615)
 
 [node name="Game" unique_id=827385281 instance=ExtResource("1_7xsxa")]
 script = ExtResource("2_3mna3")
-metadata/_edit_vertical_guides_ = [-288.0, -279.0, -287.0, 1610.0]
+metadata/_edit_vertical_guides_ = [-288.0, -279.0, -287.0, 1610.0, -210.0, -219.0]
 metadata/_edit_horizontal_guides_ = [-669.0, 1563.0]
 
 [node name="Sprite2D" parent="." index="0" unique_id=1805247788]
-position = Vector2(668, 437.75)
+position = Vector2(729, 413)
 scale = Vector2(4.979167, 3.5132816)
 
-[node name="Objects" parent="." index="1" unique_id=1453897895 instance=ExtResource("2_5obrr")]
-position = Vector2(-1020, -285)
-scale = Vector2(3.983515, 3.0685773)
+[node name="Marker2D" type="Marker2D" parent="Sprite2D" index="0" unique_id=531076771]
+position = Vector2(-196.61923, 102.75294)
 
-[node name="Player" parent="." index="2" unique_id=1851519035 instance=ExtResource("2_ehbmp")]
-position = Vector2(617, 917.00006)
-scale = Vector2(3.9609377, 3.2359376)
-
-[node name="Borders" type="StaticBody2D" parent="." index="3" unique_id=1345581844]
+[node name="Borders" type="StaticBody2D" parent="." index="1" unique_id=1345581844]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" index="0" unique_id=655025843]
 position = Vector2(670, -667)
 shape = SubResource("RectangleShape2D_63h0o")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" index="1" unique_id=848579139]
-position = Vector2(-364, 445)
+position = Vector2(-290, 393.5)
 shape = SubResource("RectangleShape2D_tre3w")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders" index="2" unique_id=1521011690]
@@ -56,18 +52,43 @@ shape = SubResource("RectangleShape2D_jxtso")
 position = Vector2(707.25, 1633.625)
 shape = SubResource("RectangleShape2D_e73nu")
 
-[node name="Area2D" type="Area2D" parent="Borders" index="4" unique_id=907966674]
+[node name="Area2D" type="Area2D" parent="." index="2" unique_id=907966674]
 script = ExtResource("5_rr6bl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Area2D" index="0" unique_id=58201041]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=58201041]
 position = Vector2(681, -384)
 shape = SubResource("RectangleShape2D_v3otf")
 
-[node name="CarTimer" type="Node2D" parent="." index="4" unique_id=1578898439]
+[node name="CarTimer" type="Node2D" parent="." index="3" unique_id=1578898439]
 
-[node name="Timer" type="Timer" parent="CarTimer" index="0" unique_id=265468084]
+[node name="CarTimer" type="Timer" parent="CarTimer" index="0" unique_id=265468084]
 wait_time = 4.0
 autostart = true
+script = ExtResource("6_n8kd5")
 
-[connection signal="body_shape_entered" from="Borders/Area2D" to="Borders/Area2D" method="_on_body_shape_entered"]
-[connection signal="timeout" from="CarTimer/Timer" to="." method="_on_timer_timeout"]
+[node name="Objectsss" type="Node2D" parent="." index="4" unique_id=413565836]
+
+[node name="Objects" parent="Objectsss" index="0" unique_id=1453897895 instance=ExtResource("2_5obrr")]
+position = Vector2(-1020, -285)
+scale = Vector2(3.983515, 3.0685773)
+
+[node name="Player" parent="Objectsss/Objects" index="4" unique_id=1851519035 instance=ExtResource("2_ehbmp")]
+position = Vector2(306.76422, 567.3639)
+scale = Vector2(0.9943324, 1.05454)
+
+[node name="CarPosition" type="Node2D" parent="." index="5" unique_id=685154691]
+
+[node name="Marker2D" type="Marker2D" parent="CarPosition" index="0" unique_id=104671864]
+position = Vector2(-253, 395)
+
+[node name="Marker2D3" type="Marker2D" parent="CarPosition" index="1" unique_id=1066074776]
+position = Vector2(-253, 40)
+
+[node name="Marker2D2" type="Marker2D" parent="CarPosition" index="2" unique_id=292801838]
+position = Vector2(-249, 268)
+
+[node name="Marker2D5" type="Marker2D" parent="CarPosition" index="3" unique_id=788976389]
+position = Vector2(-250, 949)
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="timeout" from="CarTimer/CarTimer" to="." method="_on_car_timer_timeout"]

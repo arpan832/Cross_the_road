@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c3mdcioslrm4p"]
+
+[ext_resource type="Script" uid="uid://cd5xhsevs1vit" path="res://Scenes/car.gd" id="1_wqo35"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_foosu"]
+load_path = "res://.godot/imported/red.png-51ddd5de1dc8feccc945a4baf874f0d3.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63h0o"]
+size = Vector2(149, 78.5)
+
+[node name="Car" type="Area2D" unique_id=476789230]
+script = ExtResource("1_wqo35")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1734739337]
+position = Vector2(5.999998, 14.5)
+scale = Vector2(7.636364, 4.2272725)
+texture = SubResource("CompressedTexture2D_foosu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=986126021]
+position = Vector2(5.5, 17.75)
+shape = SubResource("RectangleShape2D_63h0o")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=809662755]
+rect = Rect2(-69, -32, 153, 93)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

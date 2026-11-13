@@ -101,7 +101,7 @@ script = ExtResource("1_kyqiw")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=663469354]
 zoom = Vector2(1.3, 1.3)
-limit_left = -287
+limit_left = -260
 limit_top = -669
 limit_right = 1615
 limit_bottom = 1560
