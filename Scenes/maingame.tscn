@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dis5xy8l78cdk"]
 
 [ext_resource type="PackedScene" uid="uid://dfq2iqhuccltx" path="res://Scenes/game.tscn" id="1_7xsxa"]
+[ext_resource type="Script" uid="uid://cht7op1pwp4wd" path="res://Scenes/maingame.gd" id="2_3mna3"]
 [ext_resource type="PackedScene" uid="uid://dqew3weeg73or" path="res://Scenes/objects.tscn" id="2_5obrr"]
 [ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://Scenes/Player.tscn" id="2_ehbmp"]
+[ext_resource type="Script" uid="uid://blh2upk7qkk6x" path="res://Scenes/area_2d.gd" id="5_rr6bl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_63h0o"]
 size = Vector2(1906.5, 71)
@@ -16,7 +18,11 @@ size = Vector2(293.5, 2213)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e73nu"]
 size = Vector2(2141.5, 206.75)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3otf"]
+size = Vector2(1901.5, 615)
+
 [node name="Game" unique_id=827385281 instance=ExtResource("1_7xsxa")]
+script = ExtResource("2_3mna3")
 metadata/_edit_vertical_guides_ = [-288.0, -279.0, -287.0, 1610.0]
 metadata/_edit_horizontal_guides_ = [-669.0, 1563.0]
 
@@ -25,7 +31,7 @@ position = Vector2(668, 437.75)
 scale = Vector2(4.979167, 3.5132816)
 
 [node name="Objects" parent="." index="1" unique_id=1453897895 instance=ExtResource("2_5obrr")]
-position = Vector2(-1063.0001, -297)
+position = Vector2(-1020, -285)
 scale = Vector2(3.983515, 3.0685773)
 
 [node name="Player" parent="." index="2" unique_id=1851519035 instance=ExtResource("2_ehbmp")]
@@ -49,3 +55,19 @@ shape = SubResource("RectangleShape2D_jxtso")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" index="3" unique_id=1633918711]
 position = Vector2(707.25, 1633.625)
 shape = SubResource("RectangleShape2D_e73nu")
+
+[node name="Area2D" type="Area2D" parent="Borders" index="4" unique_id=907966674]
+script = ExtResource("5_rr6bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Area2D" index="0" unique_id=58201041]
+position = Vector2(681, -384)
+shape = SubResource("RectangleShape2D_v3otf")
+
+[node name="CarTimer" type="Node2D" parent="." index="4" unique_id=1578898439]
+
+[node name="Timer" type="Timer" parent="CarTimer" index="0" unique_id=265468084]
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_shape_entered" from="Borders/Area2D" to="Borders/Area2D" method="_on_body_shape_entered"]
+[connection signal="timeout" from="CarTimer/Timer" to="." method="_on_timer_timeout"]

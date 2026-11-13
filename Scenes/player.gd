@@ -4,7 +4,7 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2(1,0)
 var speed: int = 400
 
-func _physics_process(_delta: float) -> void: ## My Charecter a
+func _physics_process(_delta: float) -> void: ## My Charecter actions 
 	direction = Input.get_vector("Left","Right","UP","Down")
 	velocity = direction * speed
 	animation()
